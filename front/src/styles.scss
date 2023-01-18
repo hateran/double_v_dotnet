@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+    --color_1: #86A4A9;
+    --color_2: #000000;
+    --slt-opacity: #00215f4f;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgba(241, 245, 249, 1) !important;
+}
+
+.btn,
+.save,
+.primary {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color_1);
+    color: white;
+}
+
+.cancel {
+    background-color: #808080;
+    color: white;
+}
+
+a:focus {
+    outline: none;
+}
+
+.error_message {
+    color: red !important;
+    font-weight: bold;
+    font-size: 13px;
+}

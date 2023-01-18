@@ -1,0 +1,84 @@
+<div class="m-10 p-4" style="height: 90vh;">
+    <form [formGroup]="loginForm" class="flex flex-col justify-center items-center h-full rounded-3xl bg-white" *ngIf="login">
+        <div class="flex justify-center w-20 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="login-logo">
+        </div>
+    
+        <div class="flex justify-center w-2/3 sm:w-1/2">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Ingrese su usuario" formControlName="name">
+            </mat-form-field>
+        </div>
+    
+        <div class="flex justify-center w-2/3 sm:w-1/2">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Ingrese su contraseña" type="password" #passwordField
+                    formControlName="password">
+                <button mat-icon-button type="button"
+                    (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                    matSuffix>
+                    <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
+                        [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                    <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
+                        [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    
+        <div class="flex justify-center gap-2 w-2/3 sm:w-1/2">
+            <button mat-flat-button class="cancel w-full" (click)="login = false; loginForm.reset()">
+                <span>Registrarse</span>
+            </button>
+
+            <button mat-flat-button class="primary w-full" (click)="signIn()" [disabled]="!loginForm.valid">
+                <span *ngIf="!loading">Iniciar Sesión</span>
+                <mat-progress-spinner class="white-spinner" *ngIf="loading" [diameter]="37" [mode]="'indeterminate'">
+                </mat-progress-spinner>
+            </button>
+        </div>
+    </form>
+
+    <form [formGroup]="loginForm" class="flex flex-col justify-center items-center h-full rounded-3xl bg-white" *ngIf="!login">
+        <div class="flex justify-center w-20 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="login-logo">
+        </div>
+    
+        <div class="flex flex-col items-center justify-center w-2/3 sm:w-1/2">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Ingrese su usuario" formControlName="name">
+            </mat-form-field>
+            <div class="error_message mb-2" *ngIf="message">El nombre de usuario ya existe</div>
+        </div>
+    
+        <div class="flex justify-center w-2/3 sm:w-1/2">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Ingrese su contraseña" type="password" #passwordField
+                    formControlName="password">
+                <button mat-icon-button type="button"
+                    (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                    matSuffix>
+                    <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
+                        [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                    <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
+                        [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    
+        <div class="flex justify-center gap-2 w-2/3 sm:w-1/2">
+            <button mat-flat-button class="cancel w-full" (click)="login = true">
+                <span>Regresar al inicio</span>
+            </button>
+
+            <button mat-flat-button class="primary w-full" (click)="register()" [disabled]="!loginForm.valid">
+                <span *ngIf="!loading">Registrarse</span>
+                <mat-progress-spinner class="white-spinner" *ngIf="loading" [diameter]="37" [mode]="'indeterminate'">
+                </mat-progress-spinner>
+            </button>
+        </div>
+    </form>
+</div>
