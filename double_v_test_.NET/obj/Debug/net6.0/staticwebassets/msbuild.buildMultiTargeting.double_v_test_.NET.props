@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\double_v_test_.NET.props" />
+</Project>
